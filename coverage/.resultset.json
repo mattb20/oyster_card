@@ -1,0 +1,81 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/card_spec.rb": [
+        1,
+        null,
+        1,
+        5,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/app.rb": [
+        1,
+        1,
+        1
+      ],
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/card.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        4,
+        null,
+        null,
+        1,
+        3,
+        2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/fare.rb": [
+
+      ],
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/station.rb": [
+
+      ],
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/fare_spec.rb": [
+
+      ],
+      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/station_spec.rb": [
+
+      ]
+    },
+    "timestamp": 1522082019
+  }
+}
