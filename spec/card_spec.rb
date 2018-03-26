@@ -23,10 +23,17 @@ describe Card do
     end
   end
 
-  describe "#in_journey" do
+  describe "#touch_in" do
     it "changes the status of the journey to be true" do
-      card.in_journey
+      card.touch_in
       expect(card.journey?).to eq true
+    end
+  end
+
+  describe "#touch_out" do
+    it "changes the status of the journey to be false" do
+      card.touch_out
+      expect(card.journey?).to eq false
     end
   end
     

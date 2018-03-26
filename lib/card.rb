@@ -18,8 +18,12 @@ class Card
     @balance -= COST
   end
 
-  def in_journey
+  def touch_in
     @journey = true
+  end
+
+  def touch_out
+    @journey = false
   end
 
   def journey?
