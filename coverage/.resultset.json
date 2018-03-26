@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/card_spec.rb": [
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/spec/card_spec.rb": [
         1,
         null,
         1,
@@ -50,12 +50,12 @@
         null,
         null
       ],
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/app.rb": [
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/lib/app.rb": [
         1,
         1,
         1
       ],
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/card.rb": [
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/lib/card.rb": [
         1,
         null,
         1,
@@ -103,10 +103,7 @@
         null,
         null
       ],
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/fare.rb": [
-
-      ],
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/station.rb": [
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/lib/fare.rb": [
         1,
         null,
         1,
@@ -118,13 +115,17 @@
         null,
         null
       ],
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/fare_spec.rb": [
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/lib/station.rb": [
+        1,
+        null
+      ],
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/spec/fare_spec.rb": [
 
       ],
-      "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/station_spec.rb": [
+      "/Users/mattburgoyne/Desktop/Projects/oyster_card/spec/station_spec.rb": [
 
       ]
     },
-    "timestamp": 1522085541
+    "timestamp": 1522086161
   }
 }
