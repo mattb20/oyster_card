@@ -1,0 +1,4 @@
+gem rspec
+gem simplecov
+gem rubocop
+gem ruby -> 2.5.0
