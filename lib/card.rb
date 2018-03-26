@@ -1,12 +1,12 @@
 class Card
 
   MAX = 90
-  COST = 2
   attr_accessor :balance
 
   def initialize(balance = 0)
     @balance = balance
     @journey = false
+    @station = Station.new
   end
 
   def top_up(amount)
@@ -14,11 +14,9 @@ class Card
     @balance += amount
   end
 
-  def deduct
-    @balance -= COST
-  end
-
   def touch_in
+    raise not_enough if @balance - @station.cost < 0
+    deduct
     @journey = true
   end
 
@@ -35,6 +33,14 @@ class Card
 
   def too_much
    "The maximum you can hold on your card is 90"
+  end
+
+  def not_enough
+    "Insufficient funds on card"
+  end
+
+  def deduct
+    @balance -= @station.cost
   end
 
 end

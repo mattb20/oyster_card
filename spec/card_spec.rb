@@ -1,7 +1,10 @@
 require 'app'
 
 describe Card do
+
   subject(:card) { described_class.new } 
+  subject(:card_money) {described_class.new(5)}
+  
   it "should automatically set the balance to 0" do
     expect(card.balance).to eq 0
   end
@@ -17,16 +20,20 @@ describe Card do
   end
 
   describe "#deduct" do
-    it "deducts 2 from the user everytime they make a journey" do
+    it "deducts 1 from the user everytime they make a journey" do
       card.top_up(10)
-      expect(card.deduct).to eq card.balance
+      expect(card.send(:deduct)).to eq card.balance
     end
   end
 
   describe "#touch_in" do
+
+    it "raises an error if they touch in with no money" do
+      expect { card.touch_in }.to raise_error "Insufficient funds on card"
+    end
     it "changes the status of the journey to be true" do
-      card.touch_in
-      expect(card.journey?).to eq true
+      card_money.touch_in
+      expect(card_money.journey?).to eq true
     end
   end
 

@@ -5,7 +5,10 @@
         1,
         null,
         1,
+        null,
         7,
+        2,
+        null,
         1,
         1,
         null,
@@ -28,6 +31,10 @@
         null,
         null,
         1,
+        null,
+        1,
+        2,
+        null,
         1,
         1,
         1,
@@ -53,11 +60,11 @@
         null,
         1,
         1,
-        1,
         null,
         1,
-        6,
-        6,
+        7,
+        7,
+        7,
         null,
         null,
         1,
@@ -66,9 +73,7 @@
         null,
         null,
         1,
-        1,
-        null,
-        null,
+        2,
         1,
         1,
         null,
@@ -88,13 +93,30 @@
         1,
         null,
         null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
         null
       ],
       "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/fare.rb": [
 
       ],
       "/Users/danielwork/Documents/GitHub/makers/week2/oyster/lib/station.rb": [
-
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        4,
+        null,
+        null,
+        null
       ],
       "/Users/danielwork/Documents/GitHub/makers/week2/oyster/spec/fare_spec.rb": [
 
@@ -103,6 +125,6 @@
 
       ]
     },
-    "timestamp": 1522083575
+    "timestamp": 1522085541
   }
 }
