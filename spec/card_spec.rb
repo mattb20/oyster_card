@@ -15,5 +15,13 @@ describe Card do
       expect { card.top_up(100) }.to raise_error "The maximum you can hold on your card is 90"
     end
   end
+
+  describe "#deduct" do
+    it "deducts 2 from the user everytime they make a journey" do
+      card.top_up(10)
+      expect(card.deduct).to eq card.balance
+    end
+
+  end
     
 end

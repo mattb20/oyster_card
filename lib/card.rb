@@ -1,6 +1,7 @@
 class Card
 
   MAX = 90
+  JOURNEY = 2
   attr_accessor :balance
   def initialize(balance = 0)
     @balance = balance
@@ -10,6 +11,11 @@ class Card
     raise too_much if @balance + amount > MAX
     @balance += amount
   end
+
+  def deduct
+    @balance -= JOURNEY
+  end
+
 
   private
 
