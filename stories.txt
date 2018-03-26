@@ -48,4 +48,8 @@ I need to have the correct fare calculated
 
 
 require './lib/app.rb'
-card = Card.new(4)
+card = Card.new
+card.top_up(66)
+card.balance
+card.top_up(30)
+card.balance

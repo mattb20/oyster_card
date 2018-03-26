@@ -7,9 +7,8 @@ class Card
   end
 
   def top_up(amount)
+    raise too_much if @balance + amount > MAX
     @balance += amount
-    raise too_much if @balance > MAX
-    @balance
   end
 
   private
