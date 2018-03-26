@@ -117,6 +117,16 @@
       ],
       "/Users/mattburgoyne/Desktop/Projects/oyster_card/lib/station.rb": [
         1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/mattburgoyne/Desktop/Projects/oyster_card/spec/fare_spec.rb": [
@@ -126,6 +136,6 @@
 
       ]
     },
-    "timestamp": 1522086161
+    "timestamp": 1522087009
   }
 }
