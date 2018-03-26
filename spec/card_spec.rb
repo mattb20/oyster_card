@@ -21,7 +21,13 @@ describe Card do
       card.top_up(10)
       expect(card.deduct).to eq card.balance
     end
+  end
 
+  describe "#in_journey" do
+    it "changes the status of the journey to be true" do
+      card.in_journey
+      expect(card.journey?).to eq true
+    end
   end
     
 end

@@ -1,10 +1,12 @@
 class Card
 
   MAX = 90
-  JOURNEY = 2
+  COST = 2
   attr_accessor :balance
+
   def initialize(balance = 0)
     @balance = balance
+    @journey = false
   end
 
   def top_up(amount)
@@ -13,7 +15,15 @@ class Card
   end
 
   def deduct
-    @balance -= JOURNEY
+    @balance -= COST
+  end
+
+  def in_journey
+    @journey = true
+  end
+
+  def journey?
+    @journey
   end
 
 
