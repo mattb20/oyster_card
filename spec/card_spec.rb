@@ -31,13 +31,16 @@ describe Card do
 
   describe "#touch_in" do
 
+
+
     it "raises an error if they touch in with no money" do
       expect { card.touch_in(station) }.to raise_error "Insufficient funds on card"
     end
 
     it "changes the status of the journey to be true" do
-      card_money.touch_in(station)
-      expect(card_money.journey?).to eq true
+
+      card_money.touch_in()
+      expect(card_money.in_journey?).to eq true
     end
 
     it "will accept the entry station as an argument" do
@@ -46,12 +49,24 @@ describe Card do
 
     end
 
+    it "will remember the entry station when the card is touched in" do
+
+      card.stations_visited = [station]
+      expect(card.stations_visited).to contain_exactly(station)
+
+
+    end
+
   end
 
   describe "#touch_out" do
     it "changes the status of the journey to be false" do
       card.touch_out
-      expect(card.journey?).to eq false
+      expect(card.in_journey?).to eq false
+    end
+
+    it "accepts an exit station as an argument" do
+      expect(card).to respond_to(:touch_out).with(1).argument
     end
 
     it "reduces the card balance by the minimum fare on touching out" do

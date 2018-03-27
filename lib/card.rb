@@ -1,40 +1,59 @@
-require_relative 'fare'
-require_relative 'station'
 
 class Card
 
   MAX = 90
   attr_accessor :balance
+  attr_accessor :stations_visited
 
-  def initialize(balance = 0)
+
+  def initialize(balance = 0, stations_visited = [], entry_station = nil)
+
     @balance = balance
-    @journey = false
+    #@journey = false
     @fare = Fare.new
-    @station  = Station.new
+    @entry_station = entry_station
+    @stations_visited = stations_visited
+
 
 
   end
 
   def top_up(amount)
+
     raise too_much if @balance + amount > MAX
     @balance += amount
+
   end
 
-  def touch_in(station)
+  def touch_in(station = Station.new)
+
     raise not_enough if @balance - @fare.minimum_fare < 0
 
-    @journey = true
+
+    @entry_station = station.name
+
+
+    #@journey = true
 
   end
 
-  def touch_out
+  def touch_out(station = Station.new('kings cross'))
     deduct
-    @journey = false
+    #@journey = false
+    @entry_station = nil
   end
 
-  def journey?
-    @journey
+  #def journey?
+    #@journey
+  #end
+
+  def in_journey?
+
+    !@entry_station.nil?
   end
+
+
+
 
 
   private
@@ -50,5 +69,7 @@ class Card
   def deduct
     @balance -= @fare.minimum_fare
   end
+
+
 
 end
