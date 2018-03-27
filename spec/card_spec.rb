@@ -12,6 +12,11 @@ describe Card do
     expect(card.balance).to eq 0
   end
 
+  it "has an empty hash of journeys on initialization" do
+    expect(card.stations_visited[:entry].empty?).to eq(true)
+    expect(card.stations_visited[:exit].empty?).to eq(true)
+  end
+
   describe "#top_up" do
     it "allows the user to add a given amount to the card" do
       expect(card.top_up(10)).to eq card.balance

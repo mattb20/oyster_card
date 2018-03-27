@@ -6,7 +6,7 @@ class Card
   attr_accessor :stations_visited
 
 
-  def initialize(balance = 0, stations_visited = [], entry_station = nil)
+  def initialize(balance = 0, stations_visited = {:entry => [], :exit => []}, entry_station = nil)
 
     @balance = balance
     #@journey = false
