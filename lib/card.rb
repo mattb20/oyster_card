@@ -1,3 +1,4 @@
+require_relative 'fare'
 class Card
 
   MAX = 90
@@ -18,11 +19,13 @@ class Card
 
   def touch_in
     raise not_enough if @balance - @fare.minimum_fare < 0
-    deduct
+
     @journey = true
+
   end
 
   def touch_out
+    deduct
     @journey = false
   end
 

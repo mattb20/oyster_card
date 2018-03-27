@@ -1,10 +1,11 @@
 require 'app'
+require 'fare'
 
 describe Card do
 
-  subject(:card) { described_class.new } 
+  subject(:card) { described_class.new }
   subject(:card_money) {described_class.new(5)}
-  
+
   it "should automatically set the balance to 0" do
     expect(card.balance).to eq 0
   end
@@ -31,10 +32,12 @@ describe Card do
     it "raises an error if they touch in with no money" do
       expect { card.touch_in }.to raise_error "Insufficient funds on card"
     end
+
     it "changes the status of the journey to be true" do
       card_money.touch_in
       expect(card_money.journey?).to eq true
     end
+
   end
 
   describe "#touch_out" do
@@ -42,6 +45,12 @@ describe Card do
       card.touch_out
       expect(card.journey?).to eq false
     end
+
+    it "reduces the card balance by the minimum fare on touching out" do
+
+      card_money.touch_out
+      expect { (card_money.balance).to eq (card_money.balance - Fare::MINIMUM_FARE) }
   end
-    
+  end
+
 end
