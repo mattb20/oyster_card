@@ -5,6 +5,8 @@ describe Card do
 
   subject(:card) { described_class.new }
   subject(:card_money) {described_class.new(5)}
+  let(:station) { double('station', :name => 'whitechapel', :zone => 1) }
+
 
   it "should automatically set the balance to 0" do
     expect(card.balance).to eq 0
@@ -30,12 +32,18 @@ describe Card do
   describe "#touch_in" do
 
     it "raises an error if they touch in with no money" do
-      expect { card.touch_in }.to raise_error "Insufficient funds on card"
+      expect { card.touch_in(station) }.to raise_error "Insufficient funds on card"
     end
 
     it "changes the status of the journey to be true" do
-      card_money.touch_in
+      card_money.touch_in(station)
       expect(card_money.journey?).to eq true
+    end
+
+    it "will accept the entry station as an argument" do
+
+      expect(card).to respond_to(:touch_in).with(1).argument
+
     end
 
   end
@@ -54,8 +62,10 @@ describe Card do
 
     it "reduces the card balance by the minimum fare on touching out" do
 
-      expect { card_money.touch_out }. to change{ card_money.balance }.by (-1)
+      expect { card_money.touch_out }. to change{ card_money.balance }.by (-Fare::MINIMUM_FARE)
     end
+
+
   end
 
 end

@@ -7,8 +7,10 @@
         null,
         1,
         null,
-        7,
+        8,
         4,
+        3,
+        null,
         null,
         1,
         1,
@@ -42,6 +44,12 @@
         1,
         null,
         null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
         null,
         null,
         1,
@@ -59,6 +67,8 @@
         1,
         null,
         4,
+        null,
+        null,
         null,
         null,
         null,
@@ -74,12 +84,15 @@
         1,
         null,
         1,
+        null,
+        1,
         1,
         null,
         1,
-        9,
-        9,
-        9,
+        10,
+        10,
+        10,
+        10,
         null,
         null,
         null,
@@ -153,9 +166,9 @@
 
       ],
       "/Users/mattburgoyne/Desktop/Projects/oyster_card/spec/station_spec.rb": [
-
+        1
       ]
     },
-    "timestamp": 1522156514
+    "timestamp": 1522157863
   }
 }

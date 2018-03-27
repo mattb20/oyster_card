@@ -1,4 +1,6 @@
 require_relative 'fare'
+require_relative 'station'
+
 class Card
 
   MAX = 90
@@ -8,6 +10,7 @@ class Card
     @balance = balance
     @journey = false
     @fare = Fare.new
+    @station  = Station.new
 
 
   end
@@ -17,7 +20,7 @@ class Card
     @balance += amount
   end
 
-  def touch_in
+  def touch_in(station)
     raise not_enough if @balance - @fare.minimum_fare < 0
 
     @journey = true
