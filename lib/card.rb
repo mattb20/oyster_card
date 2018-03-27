@@ -7,6 +7,8 @@ class Card
     @balance = balance
     @journey = false
     @fare = Fare.new
+
+
   end
 
   def top_up(amount)
@@ -15,7 +17,7 @@ class Card
   end
 
   def touch_in
-    raise not_enough if @balance - @fare.cost < 0
+    raise not_enough if @balance - @fare.minimum_fare < 0
     deduct
     @journey = true
   end
@@ -40,7 +42,7 @@ class Card
   end
 
   def deduct
-    @balance -= @fare.cost
+    @balance -= @fare.minimum_fare
   end
 
 end

@@ -1,10 +1,11 @@
 class Fare
 
-  COST = 1
-  attr_reader :cost
+  MINIMUM_FARE = 1
 
-  def cost
-    COST
+  attr_reader :minimum_fare
+  
+  def minimum_fare
+    MINIMUM_FARE
   end
 
 end
