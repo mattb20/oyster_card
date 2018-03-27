@@ -51,6 +51,11 @@ describe Card do
       card_money.touch_out
       expect { (card_money.balance).to eq (card_money.balance - Fare::MINIMUM_FARE) }
   end
+
+    it "reduces the card balance by the minimum fare on touching out" do
+
+      expect { card_money.touch_out }. to change{ card_money.balance }.by (-1)
+    end
   end
 
 end
