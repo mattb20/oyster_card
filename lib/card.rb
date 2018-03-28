@@ -42,7 +42,7 @@ class Card
   def touch_out(station = Station.new('kings cross'))
     deduct
     #@journey = false
-    @entry_station = nil
+    stop_journey
     @stations_visited[:exit].push(station.name)
 
   end
@@ -84,6 +84,11 @@ class Card
 
   def deduct
     @balance -= @fare.minimum_fare
+  end
+
+  def stop_journey
+    @entry_station = nil
+
   end
 
 
