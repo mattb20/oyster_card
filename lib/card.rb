@@ -27,7 +27,7 @@ class Card
 
   def touch_in(station = Station.new)
 
-    raise not_enough if @balance - @fare.minimum_fare < 0
+    raise not_enough if not_enough_funds
 
 
     @entry_station = station.name
@@ -61,6 +61,10 @@ class Card
 
 
   private
+
+  def not_enough_funds
+    @balance - @fare.minimum_fare < 0
+  end
 
   def add_funds(amount)
     @balance += amount
