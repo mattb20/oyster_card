@@ -20,7 +20,7 @@ class Card
 
   def top_up(amount)
 
-    raise too_much if @balance + amount > MAX
+    raise too_much if balance_exceeds_top_up_limit(amount)
     add_funds(amount)
 
   end
@@ -61,6 +61,10 @@ class Card
 
 
   private
+
+  def balance_exceeds_top_up_limit(amount)
+    @balance + amount > MAX
+  end
 
   def not_enough_funds
     @balance - @fare.minimum_fare < 0
