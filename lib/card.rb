@@ -21,7 +21,7 @@ class Card
   def top_up(amount)
 
     raise too_much if @balance + amount > MAX
-    @balance += amount
+    add_funds(amount)
 
   end
 
@@ -31,6 +31,8 @@ class Card
 
 
     @entry_station = station.name
+    @stations_visited[:entry].push(station.name)
+
 
 
     #@journey = true
@@ -57,6 +59,10 @@ class Card
 
 
   private
+
+  def add_funds(amount)
+    @balance += amount
+  end
 
   def too_much
    "The maximum you can hold on your card is 90"

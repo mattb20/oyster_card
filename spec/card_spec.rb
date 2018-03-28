@@ -4,8 +4,9 @@ require 'fare'
 describe Card do
 
   subject(:card) { described_class.new }
-  subject(:card_money) {described_class.new(5)}
-  let(:station) { double('station', :name => 'whitechapel', :zone => 1) }
+  subject(:card_money) { described_class.new(5) }
+  let(:station_whitechapel) { double('station', :name => 'whitechapel', :zone => 1) }
+  let(:station_kingscross) { double('station', :name => 'kings cross', :zone => 2) }
 
 
   it "should automatically set the balance to 0" do
@@ -39,7 +40,7 @@ describe Card do
 
 
     it "raises an error if they touch in with no money" do
-      expect { card.touch_in(station) }.to raise_error "Insufficient funds on card"
+      expect { card.touch_in(station_whitechapel) }.to raise_error "Insufficient funds on card"
     end
 
     it "changes the status of the journey to be true" do
@@ -56,8 +57,16 @@ describe Card do
 
     it "will remember the entry station when the card is touched in" do
 
-      card.stations_visited = [station]
-      expect(card.stations_visited).to contain_exactly(station)
+      card.stations_visited = [station_whitechapel]
+      expect(card.stations_visited).to contain_exactly(station_whitechapel)
+
+
+    end
+
+    it "adds the entry and exit stations to the journeys hash" do
+      card_money.touch_in(station_whitechapel)
+      card_money.touch_out(station_kingscross)
+      expect (card_money.stations_visited[:entry][0]).should eql(station_whitechapel.name)
 
 
     end
