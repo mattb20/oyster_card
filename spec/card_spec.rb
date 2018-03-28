@@ -67,6 +67,8 @@ describe Card do
       card_money.touch_in(station_whitechapel)
       card_money.touch_out(station_kingscross)
       expect (card_money.stations_visited[:entry][0]).should eql(station_whitechapel.name)
+      expect (card_money.stations_visited[:exit][0]).should eql(station_kingscross.name)
+
 
 
     end

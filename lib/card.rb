@@ -43,6 +43,8 @@ class Card
     deduct
     #@journey = false
     @entry_station = nil
+    @stations_visited[:exit].push(station.name)
+
   end
 
   #def journey?
