@@ -1,22 +1,29 @@
 require 'app'
-require 'fare'
 
 describe Card do
 
   subject(:card) { described_class.new }
-  subject(:card_money) { described_class.new(5) }
-  let(:station_whitechapel) { double('station', :name => 'whitechapel', :zone => 1) }
-  let(:station_kingscross) { double('station', :name => 'kings cross', :zone => 2) }
+  subject(:card_money) { described_class.new(Card::MIN_BALANCE) }
+  let(:entry_station) { double('station', :name => 'whitechapel') }
+  let(:exit_station) { double('station', :name => 'kings cross') }
+  let(:journey_current) { double ('journey') }
 
+  context "on initialization" do
 
-  it "should automatically set the balance to 0" do
-    expect(card.balance).to eq 0
+  it "should automatically set the card balance to default balance when not passed an argument" do
+    expect(card.balance).to eq (Card::DEFAULT_BALANCE)
   end
 
-  it "has an empty hash of journeys on initialization" do
-    expect(card.stations_visited[:entry].empty?).to eq(true)
-    expect(card.stations_visited[:exit].empty?).to eq(true)
+  it "creates a new journey object" do
+    expect(card.journey_current).to be_an_instance_of(Journey)
   end
+
+  it "changes the balance when passed an argument" do
+    expect(card_money.balance).to eq (Card::MIN_BALANCE)
+  end
+
+  end
+
 
   describe "#top_up" do
     it "allows the user to add a given amount to the card" do
@@ -40,7 +47,7 @@ describe Card do
 
 
     it "raises an error if they touch in with no money" do
-      expect { card.touch_in(station_whitechapel) }.to raise_error "Insufficient funds on card"
+      expect { card.touch_in(entry_station) }.to raise_error "Insufficient funds on card"
     end
 
     it "changes the status of the journey to be true" do
@@ -55,45 +62,14 @@ describe Card do
 
     end
 
-    it "will remember the entry station when the card is touched in" do
-
-      card.stations_visited = [station_whitechapel]
-      expect(card.stations_visited).to contain_exactly(station_whitechapel)
-
-
-    end
-
-    it "adds the entry and exit stations to the journeys hash" do
-      card_money.touch_in(station_whitechapel)
-      card_money.touch_out(station_kingscross)
-      expect (card_money.stations_visited[:entry][0]).should eql(station_whitechapel.name)
-      expect (card_money.stations_visited[:exit][0]).should eql(station_kingscross.name)
-
-
-
-    end
 
   end
 
   describe "#touch_out" do
-    it "changes the status of the journey to be false" do
-      card.touch_out
-      expect(card.in_journey?).to eq false
-    end
-
-    it "accepts an exit station as an argument" do
-      expect(card).to respond_to(:touch_out).with(1).argument
-    end
 
     it "reduces the card balance by the minimum fare on touching out" do
-
-      card_money.touch_out
-      expect { (card_money.balance).to eq (card_money.balance - Fare::MINIMUM_FARE) }
-  end
-
-    it "reduces the card balance by the minimum fare on touching out" do
-
-      expect { card_money.touch_out }. to change{ card_money.balance }.by (-Fare::MINIMUM_FARE)
+      card_money.touch_in(entry_station)
+      expect { card_money.touch_out(exit_station) }. to change{ card_money.balance }.by (-Journey::MINIMUM_FARE)
     end
 
 

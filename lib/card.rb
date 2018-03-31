@@ -1,20 +1,19 @@
-
+require_relative 'journey_tracker'
+require_relative 'journey'
 class Card
 
-  MAX = 90
+  MAX_BALANCE = 90
+  MIN_BALANCE = 1
+  DEFAULT_BALANCE = 0
   attr_accessor :balance
-  attr_accessor :stations_visited
+  attr_reader :journey_current
 
-
-  def initialize(balance = 0, stations_visited = {:entry => [], :exit => []}, entry_station = nil)
+  def initialize(balance = DEFAULT_BALANCE)
 
     @balance = balance
     #@journey = false
-    @fare = Fare.new
-    @entry_station = entry_station
-    @stations_visited = stations_visited
-
-
+    @journey_current = Journey.new
+    @journey_tracker = JourneyTracker.new(@journey_current)
 
   end
 
@@ -26,12 +25,16 @@ class Card
   end
 
   def touch_in(station = Station.new)
+    @station = station
 
     raise not_enough if not_enough_funds
+    complete_journey if !@journey_current.entry_station.nil? || !@journey_current.new_journey?
+    @journey_tracker.start_station(@station.name)
+    # deduct if complete_journey?
 
 
-    @entry_station = station.name
-    @stations_visited[:entry].push(station.name)
+
+    # @stations_visited[:entry].push(station.name)
 
 
 
@@ -40,10 +43,11 @@ class Card
   end
 
   def touch_out(station = Station.new('kings cross'))
-    deduct
+    @station = station
     #@journey = false
-    stop_journey
-    @stations_visited[:exit].push(station.name)
+
+    @journey_tracker.end_station(@station.name)
+    complete_journey
 
   end
 
@@ -51,23 +55,22 @@ class Card
     #@journey
   #end
 
+
+  private
+
+  def balance_exceeds_top_up_limit(amount)
+    @balance + amount > MAX_BALANCE
+  end
+
   def in_journey?
 
     !@entry_station.nil?
   end
 
-
-
-
-
-  private
-
-  def balance_exceeds_top_up_limit(amount)
-    @balance + amount > MAX
-  end
-
   def not_enough_funds
-    @balance - @fare.minimum_fare < 0
+
+    @balance < MIN_BALANCE
+
   end
 
   def add_funds(amount)
@@ -82,14 +85,25 @@ class Card
     "Insufficient funds on card"
   end
 
-  def deduct
-    @balance -= @fare.minimum_fare
+  def complete_journey
+    p @journey_current.fare
+    deduct(@journey_current.fare)
+    @journey_tracker.journeys << @journey
+    @journey = Journey.new
   end
 
-  def stop_journey
-    @entry_station = nil
-
+  def deduct(fare)
+    @balance -= fare
   end
+
+
+  # def stop_journey
+  #   deduct if @journey
+  #   @entry_station = nil
+  #
+  # end
+
+
 
 
 
